@@ -106,23 +106,4 @@ FIRST we need to make github talk to jenkins server everytime a push or commit i
 <img width="1416" alt="Screenshot 2023-06-27 at 4 33 40 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/9de430d6-a5d7-4b09-8f58-ba6264c5f916">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Jenkins Configuration
-
-- Include a screenshot of the Jenkins dashboard after the initial setup.
-
+###CI/CD pipelines offer a range of benefits, including improved collaboration, faster testing and deployment, enhanced release management, scalability, and a culture of continuous improvement. By automating and streamlining the software development process, CI/CD pipelines empower teams to deliver high-quality software at an accelerated pace, enabling businesses to stay competitive in today's fast-paced digital landscape.###
