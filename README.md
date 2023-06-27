@@ -1,7 +1,7 @@
 # jenkins-project
 ## CI/CD Project Documentation
 
-This documentation provides an overview of the CI/CD project that involves the setup of Jenkins and deployment of a simple HTML website to a testing environment and subsequently to a production environment. The project utilizes three EC2 instances: `jenkins`, `testing`, and `production`, where `jenkins` serves as the Jenkins server, and `testing` and `production` act as slaves to the Jenkins server.
+This documentation provides an overview of the CI/CD project that involves the setup of Jenkins and deployment of a simple HTML website to a testing environment and subsequently to a production environment. The project utilizes three EC2 instances: `jenkins`, `staging`, and `production`, where `jenkins` serves as the Jenkins server, and `staging` and `production` act as slaves to the Jenkins server.
 
 ### Infrastructure Setup
 
@@ -66,6 +66,40 @@ The following sections provide suggested places to add screenshots of your setup
 #### EC2 Instances
 
 - <img width="1434" alt="Screenshot 2023-06-27 at 3 23 42 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/ea9fa06b-da4a-4094-ab05-9f363eb3a5eb">
+
+-we need to open port 8080 on jenkins server in  order to access it
+<img width="1314" alt="Screenshot 2023-06-27 at 3 29 31 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/49391a0a-87a9-41d6-a9c2-8ddd8ff517ae">
+
+-To connect the master to slaves we will open all ports(Note: this is for demo purposes, you should not open all inbound ports on an instance)
+<img width="1334" alt="Screenshot 2023-06-27 at 3 34 19 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/d440b3e9-1b1d-4d8e-a7a8-45d9ce026c2e">
+-In jenkins server we will set the TCP port inbound to random :
+<img width="852" alt="Screenshot 2023-06-27 at 3 47 56 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/2e78c2ca-555a-4d5d-9700-fb6789c8613c">
+
+-Now we will create 2 nodes for staging and production: 
+<img width="1075" alt="Screenshot 2023-06-27 at 3 50 30 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/74f650ca-1e7b-466e-a8d7-f7972cc9959b">
+
+-After creating the nodes and connecting them to the master, we can start implementing the following pipeline : 
+<img width="1402" alt="Screenshot 2023-06-27 at 3 53 34 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/bed7b6f1-e19f-4c47-80d2-cb7310450d35">
+
+-We will create Git-Job first and similarly build-website and production-build, then we will configure them to establish the pipeline :
+<img width="956" alt="Screenshot 2023-06-27 at 3 54 50 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/55580fcc-1e9e-4e30-81c2-7468d3782a83">
+
+###Note that I created a basic html website to make the demonstration and testing easy to understand, then i uploaded it to my github repository
+
+-Git-job will hook the repository using a build trigger and then we use a post build action to start the build-website job if successful:
+<img width="1402" alt="Screenshot 2023-06-27 at 4 06 38 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/5880e9aa-1968-4d6c-8d09-b1561e69debb">
+
+<img width="1402" alt="Screenshot 2023-06-27 at 4 06 57 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/78a1185e-9aab-40ea-94fc-5b9328b1032d">
+
+-Build-website job will containerize the website  using docker bu executing a shell and then trigger then trigger the production-build job if successful
+
+
+
+
+
+
+
+
 
 
 #### Jenkins Configuration
