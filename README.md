@@ -86,12 +86,21 @@ The following sections provide suggested places to add screenshots of your setup
 
 ###Note that I created a basic html website to make the demonstration and testing easy to understand, then i uploaded it to my github repository
 
+FIRST we need to make github talk to jenkins server everytime a push or commit is done in the repository, we do that by adding a webhook in github and aim it at jenkins server at port 8080 : 
+<img width="1402" alt="Screenshot 2023-06-27 at 4 19 43 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/267e016b-41d3-4e53-a091-33e1f0751b17">
+
 -Git-job will hook the repository using a build trigger and then we use a post build action to start the build-website job if successful:
 <img width="1402" alt="Screenshot 2023-06-27 at 4 06 38 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/5880e9aa-1968-4d6c-8d09-b1561e69debb">
 
 <img width="1402" alt="Screenshot 2023-06-27 at 4 06 57 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/78a1185e-9aab-40ea-94fc-5b9328b1032d">
 
 -Build-website job will containerize the website  using docker bu executing a shell and then trigger then trigger the production-build job if successful
+<img width="1402" alt="Screenshot 2023-06-27 at 4 12 19 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/e0813d81-5be5-41e3-b217-3571155ff596">
+<img width="1402" alt="Screenshot 2023-06-27 at 4 12 30 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/e78f5bd1-d935-452f-b1a4-13d6d087fe48">
+
+
+
+
 
 
 
