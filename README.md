@@ -1,5 +1,5 @@
 # jenkins-project
-## CI/CD Project Documentation
+## CI/CD pipeline Project using jenkins Documentation
 
 This documentation provides an overview of the CI/CD project that involves the setup of Jenkins and deployment of a simple HTML website to a testing environment and subsequently to a production environment. The project utilizes three EC2 instances: `jenkins`, `staging`, and `production`, where `jenkins` serves as the Jenkins server, and `staging` and `production` act as slaves to the Jenkins server.
 
@@ -8,14 +8,14 @@ This documentation provides an overview of the CI/CD project that involves the s
 1. Create EC2 Instances:
    - **Jenkins Instance (`jenkins`):**
      - This instance will host the Jenkins server.
-   - **Testing Instance (`testing`):**
+   - **Testing Instance (`staging`):**
      - This instance will be used for testing the website.
    - **Production Instance (`production`):**
      - This instance will be used for deploying the website to the production environment.
 
 2. Install Java and Docker:
-   - Install **Java Runtime Environment (JRE)** on all instances (`jenkins`, `testing`, and `production`).
-   - Install **Docker** on `testing` and `production` instances to facilitate containerization.
+   - Install **Java Runtime Environment (JRE)** on all instances (`jenkins`, `staging`, and `production`).
+   - Install **Docker** on `staging` and `production` instances to facilitate containerization.
 
 ### Setting up the CI/CD Pipeline
 
@@ -43,7 +43,7 @@ This documentation provides an overview of the CI/CD project that involves the s
    - **Git Job** and **Build Job** should have a sequential dependency. The **Build Job** should only be triggered if the **Git Job** is successful.
 
 5. Test Deployment to Testing Environment:
-   - Run the Jenkins job pipeline and verify that the website is successfully containerized and deployed on the testing environment (`testing` instance) on port 82.
+   - Run the Jenkins job pipeline and verify that the website is successfully containerized and deployed on the testing environment (`staging` instance) on port 82.
 
 6. Configure Production Deployment:
    - **Build Job Modification:**
@@ -51,7 +51,7 @@ This documentation provides an overview of the CI/CD project that involves the s
    - **Production Job:**
      - Purpose: Deploy the website on the production environment.
      - Steps:
-       1. Create a new Jenkins job (e.g., `production-job`) to deploy the website on the production environment.
+       1. Create a new Jenkins job (e.g., `production-build`) to deploy the website on the production environment.
        2. Configure the job to containerize the website using Docker.
        3. Specify the necessary Docker commands to build the image and deploy it on port 82 of the production environment.
 
@@ -60,10 +60,7 @@ This documentation provides an overview of the CI/CD project that involves the s
 
 ### Screenshots
 
-The following sections provide suggested places to add screenshots of your setup and configurations:
 <img width="698" alt="Screenshot 2023-06-27 at 3 24 22 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/abc7bbd5-019a-42e4-9b18-0a7d19a4e560">
-
-#### EC2 Instances
 
 - <img width="1434" alt="Screenshot 2023-06-27 at 3 23 42 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/ea9fa06b-da4a-4094-ab05-9f363eb3a5eb">
 
@@ -94,9 +91,23 @@ FIRST we need to make github talk to jenkins server everytime a push or commit i
 
 <img width="1402" alt="Screenshot 2023-06-27 at 4 06 57 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/78a1185e-9aab-40ea-94fc-5b9328b1032d">
 
--Build-website job will containerize the website  using docker bu executing a shell and then trigger then trigger the production-build job if successful
+-Build-website job will containerize the website on port 82  using docker by executing a shell and then trigger  the production-build job if successful
 <img width="1402" alt="Screenshot 2023-06-27 at 4 12 19 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/e0813d81-5be5-41e3-b217-3571155ff596">
 <img width="1402" alt="Screenshot 2023-06-27 at 4 12 30 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/e78f5bd1-d935-452f-b1a4-13d6d087fe48">
+
+-Production-build job will be triggered after build-website and it will containerize the app and deploy it to production on port 80:
+<img width="1402" alt="Screenshot 2023-06-27 at 4 29 41 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/935f7428-ffbf-40b2-b25f-7dbbf379c408">
+
+<img width="1403" alt="Screenshot 2023-06-27 at 4 30 05 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/9f0d1c5c-a08c-4120-afe8-1d2b7c11a91e">
+
+<img width="1403" alt="Screenshot 2023-06-27 at 4 30 19 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/5d3184cc-e535-4848-97c7-8d54536027a1">
+
+-After pushing code to our repository, the pipeline will automatically start executing :
+<img width="1416" alt="Screenshot 2023-06-27 at 4 33 40 PM" src="https://github.com/MohamadSalehIT/jenkins-project/assets/123941794/9de430d6-a5d7-4b09-8f58-ba6264c5f916">
+
+
+
+
 
 
 
